@@ -18,6 +18,12 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
+    if (a <= 0) or (b <= 0) or (c <= 0):
+      raise TriangleError, "No sides of 0 or less length"
+
+    if (a + b <= c) or (a + c <= b) or (b + c <= a):
+      raise TriangleError, "No side can be longer than the other two"
+
     if (a == b) and (b == c):
         return 'equilateral'
     elif (a == b) or (a == c) or (b == c):
