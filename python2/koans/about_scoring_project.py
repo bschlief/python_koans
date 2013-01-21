@@ -34,8 +34,31 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    score = 0
+
+    counts = {}
+
+    for d in dice:
+        if counts.has_key(d):
+            counts[d] += 1
+        else:
+            counts[d] = 1
+
+    for k,v in counts.iteritems():
+        if (k==1) and (v >= 3):
+            score += 1000
+            counts[k] -= 3
+        elif (v >= 3):
+            score += k * 100
+            counts[k] -= 3
+
+    if counts.has_key(1):
+        score += counts[1] * 100
+
+    if counts.has_key(5):
+        score += counts[5] * 50
+
+    return score
 
 
 class AboutScoringProject(Koan):
